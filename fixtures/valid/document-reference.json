@@ -1,0 +1,21 @@
+{
+  "event_id": "evt-6d894f0b28f5019c",
+  "event_type": "DOCUMENT_REFERENCE",
+  "evidence_refs": [
+    "evidence:synthetic:ca19288dc92a4a90"
+  ],
+  "occurred_at": "2025-01-15T11:10:00Z",
+  "payload": {
+    "content_digest": "sha256:68f080b158135774839bd6d984fcf1af331490425caf82808915c28457edba81",
+    "document_id": "doc-f4b31b2d8252a318",
+    "document_type": "CONFIRMATION",
+    "source_reference": "document:synthetic:6d894f0b28f5019c"
+  },
+  "source": {
+    "captured_at": "2025-01-15T11:15:00Z",
+    "content_digest": "sha256:7fd43cdcfcc7bb0372de5123710ccf01558a8c1dbae989eadf59789d23e1c9b0",
+    "source_record_id": "src-6d894f0b28f5019c",
+    "source_system": "SYNTHETIC_LIFECYCLE_SYSTEM",
+    "source_type": "DOCUMENT_REGISTRY"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amanah-alpha.github.io/institutional-event-schema/schema/balance.schema.json",
+  "title": "Balance Payload",
+  "description": "Describes a reported balance without making a compliance or Sharia determination.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["asset", "available", "locked", "total", "balance_type"],
+  "properties": {
+    "asset": { "$ref": "#/$defs/asset" },
+    "available": { "$ref": "#/$defs/nonnegative_decimal" },
+    "locked": { "$ref": "#/$defs/nonnegative_decimal" },
+    "total": { "$ref": "#/$defs/nonnegative_decimal" },
+    "balance_type": { "enum": ["ORDINARY", "YIELD_BEARING", "UNKNOWN"] }
+  },
+  "$defs": {
+    "asset": { "type": "string", "pattern": "^[A-Z0-9][A-Z0-9._-]{1,31}$" },
+    "nonnegative_decimal": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$" }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "event_id": "evt-14aa03cf4901518e",
+  "event_type": "BALANCE",
+  "evidence_refs": [],
+  "occurred_at": "2025-01-15T11:30:00Z",
+  "payload": {
+    "asset": "SYNTH-A",
+    "available": "4.47627510",
+    "balance_type": "UNKNOWN",
+    "locked": "0.00000000",
+    "total": "4.47627510"
+  },
+  "source": {
+    "captured_at": "2025-01-15T11:35:00Z",
+    "content_digest": "sha256:f1ae1e1764da7d25bb73585c2258b910f22305694e2116ffca9b0f5c2fc128db",
+    "source_record_id": "src-14aa03cf4901518e",
+    "source_system": "SYNTHETIC_LIFECYCLE_SYSTEM",
+    "source_type": "CUSTODY_EXPORT"
+  }
+}

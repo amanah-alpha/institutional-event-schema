@@ -1,0 +1,22 @@
+{
+  "event_id": "evt-48194a1625c55edd",
+  "event_type": "FEE",
+  "evidence_refs": [
+    "evidence:synthetic:497ae8568c5e1484"
+  ],
+  "occurred_at": "2025-01-15T10:15:00Z",
+  "payload": {
+    "amount": "0.00011111",
+    "asset": "SYNTH-A",
+    "fee_id": "fee-96c7cddf2e158449",
+    "fee_type": "TRADING",
+    "related_event_id": "evt-c9dabeab990ba00d"
+  },
+  "source": {
+    "captured_at": "2025-01-15T10:20:00Z",
+    "content_digest": "sha256:986ec935305b7dde679ff2452d7d845e7b97334f2f9b5e2e7be8a9e15b0a1a23",
+    "source_record_id": "src-48194a1625c55edd",
+    "source_system": "SYNTHETIC_LIFECYCLE_SYSTEM",
+    "source_type": "EXCHANGE_EXPORT"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amanah-alpha.github.io/institutional-event-schema/schema/fee.schema.json",
+  "title": "Fee Payload",
+  "description": "Descriptive fee data; fee types carry no normative meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fee_id", "related_event_id", "fee_type", "asset", "amount"],
+  "properties": {
+    "fee_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "related_event_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "fee_type": { "enum": ["TRADING", "TRANSFER", "CUSTODY", "NETWORK", "OTHER", "UNKNOWN"] },
+    "asset": { "$ref": "#/$defs/asset" },
+    "amount": { "$ref": "#/$defs/nonnegative_decimal" }
+  },
+  "$defs": {
+    "asset": { "type": "string", "pattern": "^[A-Z0-9][A-Z0-9._-]{1,31}$" },
+    "nonnegative_decimal": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$" }
+  }
+}

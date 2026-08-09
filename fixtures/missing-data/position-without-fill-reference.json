@@ -1,0 +1,21 @@
+{
+  "event_id": "evt-e3853172611cf4ae",
+  "event_type": "POSITION",
+  "evidence_refs": [
+    "evidence:synthetic:d3a139b9c46aa815"
+  ],
+  "occurred_at": "2025-01-15T11:20:00Z",
+  "payload": {
+    "asset": "SYNTH-A",
+    "instrument_type": "SPOT",
+    "portfolio_weight": "0.12500000",
+    "quantity": "4.47627510"
+  },
+  "source": {
+    "captured_at": "2025-01-15T11:25:00Z",
+    "content_digest": "sha256:e602f62a7452058c58402a29844f15ccf7998c5d48f9666f063064d750e26a4f",
+    "source_record_id": "src-e3853172611cf4ae",
+    "source_system": "SYNTHETIC_LIFECYCLE_SYSTEM",
+    "source_type": "INTERNAL_LEDGER"
+  }
+}

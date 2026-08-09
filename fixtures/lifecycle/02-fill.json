@@ -1,0 +1,26 @@
+{
+  "event_id": "evt-c9dabeab990ba00d",
+  "event_type": "FILL",
+  "evidence_refs": [
+    "evidence:synthetic:771ce5ddcb2e3d20"
+  ],
+  "occurred_at": "2025-01-15T10:10:00Z",
+  "payload": {
+    "asset": "SYNTH-A",
+    "fee_refs": [
+      "fee-96c7cddf2e158449"
+    ],
+    "fill_id": "fill-300feaf87bec66d7",
+    "order_id": "ord-e33ef05053da6b9b",
+    "price": "62652.83",
+    "quantity": "4.47627510",
+    "venue": "SYNTHETIC_VENUE_01"
+  },
+  "source": {
+    "captured_at": "2025-01-15T10:15:00Z",
+    "content_digest": "sha256:ded0eab972d67a8181fb2f31f7a1cfc3ab7b641888651981c3575ba7d22dbf1c",
+    "source_record_id": "src-c9dabeab990ba00d",
+    "source_system": "SYNTHETIC_LIFECYCLE_SYSTEM",
+    "source_type": "EXCHANGE_EXPORT"
+  }
+}

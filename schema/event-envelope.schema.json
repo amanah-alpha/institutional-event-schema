@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amanah-alpha.github.io/institutional-event-schema/schema/event-envelope.schema.json",
+  "title": "Institutional Event Envelope",
+  "description": "A minimal normalized envelope for an institutional digital-asset lifecycle record used as assurance input.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "event_type",
+    "occurred_at",
+    "source",
+    "payload",
+    "evidence_refs"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$",
+      "description": "Opaque stable identifier for this normalized event; no UUID format is implied."
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "ORDER",
+        "FILL",
+        "POSITION",
+        "BALANCE",
+        "FEE",
+        "TRANSFER",
+        "YIELD",
+        "FUNDING",
+        "DOCUMENT_REFERENCE"
+      ]
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp attributed to the lifecycle event by its source context."
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "uniqueItems": true,
+      "description": "Opaque references to evidence held outside this normalized input record."
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_system",
+        "source_record_id",
+        "source_type",
+        "captured_at",
+        "content_digest"
+      ],
+      "properties": {
+        "source_system": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "description": "Synthetic or provider-neutral name of the system supplying the referenced record."
+        },
+        "source_record_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Identifier of the record in the source system."
+        },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "EXCHANGE_EXPORT",
+            "CUSTODY_EXPORT",
+            "INTERNAL_LEDGER",
+            "DOCUMENT_REGISTRY",
+            "OTHER"
+          ]
+        },
+        "captured_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "content_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "description": "Digest of the referenced source representation. It detects change relative to that representation but does not establish external truth or authenticity."
+        }
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "event_type": { "const": "ORDER" },
+        "payload": { "$ref": "order.schema.json" }
+      }
+    },
+    {
+      "properties": {
+        "event_type": { "const": "FILL" },
+        "payload": { "$ref": "fill.schema.json" }
+      }
+    },
+    {
+      "properties": {
+        "event_type": { "const": "POSITION" },
+        "payload": { "$ref": "position.schema.json" }
+      }
+    },
+    {
+      "properties": {
+        "event_type": { "const": "BALANCE" },
+        "payload": { "$ref": "balance.schema.json" }
+      }
+    },
+    {
+      "properties": {
+        "event_type": { "const": "FEE" },
+        "payload": { "$ref": "fee.schema.json" }
+      }
+    },
+    {
+      "properties": {
+        "event_type": { "const": "TRANSFER" },
+        "payload": { "$ref": "transfer.schema.json" }
+      }
+    },
+    {
+      "properties": {
+        "event_type": { "const": "YIELD" },
+        "payload": { "$ref": "yield.schema.json" }
+      }
+    },
+    {
+      "properties": {
+        "event_type": { "const": "FUNDING" },
+        "payload": { "$ref": "funding.schema.json" }
+      }
+    },
+    {
+      "properties": {
+        "event_type": { "const": "DOCUMENT_REFERENCE" },
+        "payload": { "$ref": "document-reference.schema.json" }
+      }
+    }
+  ]
+}

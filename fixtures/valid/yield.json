@@ -1,0 +1,21 @@
+{
+  "event_id": "evt-86e3d854e59c1a29",
+  "event_type": "YIELD",
+  "evidence_refs": [
+    "evidence:synthetic:89863e8711a7dbbb"
+  ],
+  "occurred_at": "2025-01-15T10:50:00Z",
+  "payload": {
+    "asset": "SYNTH-A",
+    "classification": "STAKING",
+    "product_ref": "product:synthetic:0916d290656a1307",
+    "quantity": "0.02298434"
+  },
+  "source": {
+    "captured_at": "2025-01-15T10:55:00Z",
+    "content_digest": "sha256:101ff361355fff30f0c351caec74d9fe245f97b9a837e6678baa86fd03f5bc1d",
+    "source_record_id": "src-86e3d854e59c1a29",
+    "source_system": "SYNTHETIC_LIFECYCLE_SYSTEM",
+    "source_type": "INTERNAL_LEDGER"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amanah-alpha.github.io/institutional-event-schema/schema/fill.schema.json",
+  "title": "Fill Payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fill_id", "order_id", "asset", "quantity", "price", "venue", "fee_refs"],
+  "properties": {
+    "fill_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "order_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "asset": { "$ref": "#/$defs/asset" },
+    "quantity": { "$ref": "#/$defs/nonnegative_decimal" },
+    "price": { "$ref": "#/$defs/nonnegative_decimal" },
+    "venue": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "fee_refs": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "asset": { "type": "string", "pattern": "^[A-Z0-9][A-Z0-9._-]{1,31}$" },
+    "nonnegative_decimal": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$" }
+  }
+}

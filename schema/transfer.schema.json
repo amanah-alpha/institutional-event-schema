@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amanah-alpha.github.io/institutional-event-schema/schema/transfer.schema.json",
+  "title": "Transfer Payload",
+  "description": "Describes source classification without deciding whether an activity is allowed or prohibited.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["transfer_id", "asset", "quantity", "direction", "source_ref", "destination_ref", "activity_classification"],
+  "properties": {
+    "transfer_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "asset": { "$ref": "#/$defs/asset" },
+    "quantity": { "$ref": "#/$defs/nonnegative_decimal" },
+    "direction": { "enum": ["INBOUND", "OUTBOUND", "INTERNAL", "UNKNOWN"] },
+    "source_ref": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "destination_ref": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "activity_classification": { "enum": ["ORDINARY", "LENDING", "UNKNOWN"] }
+  },
+  "$defs": {
+    "asset": { "type": "string", "pattern": "^[A-Z0-9][A-Z0-9._-]{1,31}$" },
+    "nonnegative_decimal": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$" }
+  }
+}

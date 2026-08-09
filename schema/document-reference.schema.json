@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amanah-alpha.github.io/institutional-event-schema/schema/document-reference.schema.json",
+  "title": "Supporting Document Reference Payload",
+  "description": "References a document held elsewhere; document content is not embedded.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["document_id", "document_type", "content_digest", "source_reference"],
+  "properties": {
+    "document_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "document_type": { "enum": ["STATEMENT", "CONFIRMATION", "RECEIPT", "OTHER", "UNKNOWN"] },
+    "content_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "source_reference": { "type": "string", "minLength": 1, "maxLength": 256 }
+  }
+}

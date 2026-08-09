@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amanah-alpha.github.io/institutional-event-schema/schema/funding.schema.json",
+  "title": "Funding Payload",
+  "description": "A narrow descriptive funding record, not a derivatives model.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["funding_id", "asset", "amount", "funding_type", "related_position_ref"],
+  "properties": {
+    "funding_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "asset": { "$ref": "#/$defs/asset" },
+    "amount": { "$ref": "#/$defs/signed_decimal" },
+    "funding_type": { "enum": ["PERIODIC", "BORROWING_COST", "OTHER", "UNKNOWN"] },
+    "related_position_ref": { "type": "string", "minLength": 1, "maxLength": 128 }
+  },
+  "$defs": {
+    "asset": { "type": "string", "pattern": "^[A-Z0-9][A-Z0-9._-]{1,31}$" },
+    "signed_decimal": { "type": "string", "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$" }
+  }
+}

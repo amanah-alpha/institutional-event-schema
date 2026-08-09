@@ -1,0 +1,24 @@
+{
+  "event_id": "evt-fc2843e99db53215",
+  "event_type": "TRANSFER",
+  "evidence_refs": [
+    "evidence:synthetic:963005c41d9d393a"
+  ],
+  "occurred_at": "2025-01-15T11:40:00Z",
+  "payload": {
+    "activity_classification": "UNKNOWN",
+    "asset": "SYNTH-A",
+    "destination_ref": "account:synthetic:aa85844e3f4dfd79",
+    "direction": "UNKNOWN",
+    "quantity": "1.00000000",
+    "source_ref": "account:synthetic:9595dcfe81622938",
+    "transfer_id": "xfer-a0f6f5293c588f36"
+  },
+  "source": {
+    "captured_at": "2025-01-15T11:45:00Z",
+    "content_digest": "sha256:5c526eeaa82745e02ed3e3295eca9971f7efb56e0212c12b9e1a6f1105a91a25",
+    "source_record_id": "src-fc2843e99db53215",
+    "source_system": "SYNTHETIC_LIFECYCLE_SYSTEM",
+    "source_type": "OTHER"
+  }
+}

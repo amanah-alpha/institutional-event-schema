@@ -1,0 +1,25 @@
+{
+  "event_id": "evt-invalid-decimal",
+  "event_type": "ORDER",
+  "evidence_refs": [
+    "evidence:synthetic:invalid-decimal"
+  ],
+  "occurred_at": "2025-01-15T10:00:00Z",
+  "payload": {
+    "asset": "SYNTH-A",
+    "instrument_type": "SPOT",
+    "leverage": "1.00000000",
+    "order_id": "ord-invalid-decimal",
+    "order_status": "FILLED",
+    "quantity": "4,476.27510",
+    "side": "BUY",
+    "venue": "SYNTHETIC_VENUE_01"
+  },
+  "source": {
+    "captured_at": "2025-01-15T10:05:00Z",
+    "content_digest": "sha256:fe0a421a2df79f10f33e730472662459063e7f17c93bc0a5f83065c98b98704c",
+    "source_record_id": "src-invalid-decimal",
+    "source_system": "SYNTHETIC_LIFECYCLE_SYSTEM",
+    "source_type": "EXCHANGE_EXPORT"
+  }
+}

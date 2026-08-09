@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amanah-alpha.github.io/institutional-event-schema/schema/order.schema.json",
+  "title": "Order Payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["order_id", "asset", "instrument_type", "side", "quantity", "venue", "leverage", "order_status"],
+  "properties": {
+    "order_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "asset": { "$ref": "#/$defs/asset" },
+    "instrument_type": { "enum": ["SPOT", "MARGIN", "PERPETUAL", "OTHER"] },
+    "side": { "enum": ["BUY", "SELL"] },
+    "quantity": { "$ref": "#/$defs/nonnegative_decimal" },
+    "venue": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "leverage": { "$ref": "#/$defs/nonnegative_decimal" },
+    "order_status": { "enum": ["OPEN", "PARTIALLY_FILLED", "FILLED", "CANCELLED", "UNKNOWN"] }
+  },
+  "$defs": {
+    "asset": { "type": "string", "pattern": "^[A-Z0-9][A-Z0-9._-]{1,31}$" },
+    "nonnegative_decimal": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$" }
+  }
+}

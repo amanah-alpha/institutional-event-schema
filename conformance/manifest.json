@@ -1,0 +1,24 @@
+{
+  "manifest_version": "1.0.0",
+  "schema_draft": "2020-12",
+  "cases": [
+    { "id": "valid-order", "kind": "fixture", "path": "fixtures/valid/order.json", "expect": "valid" },
+    { "id": "valid-fill", "kind": "fixture", "path": "fixtures/valid/fill.json", "expect": "valid" },
+    { "id": "valid-position", "kind": "fixture", "path": "fixtures/valid/position.json", "expect": "valid" },
+    { "id": "valid-balance", "kind": "fixture", "path": "fixtures/valid/balance.json", "expect": "valid" },
+    { "id": "valid-fee", "kind": "fixture", "path": "fixtures/valid/fee.json", "expect": "valid" },
+    { "id": "valid-transfer", "kind": "fixture", "path": "fixtures/valid/transfer.json", "expect": "valid" },
+    { "id": "valid-yield", "kind": "fixture", "path": "fixtures/valid/yield.json", "expect": "valid" },
+    { "id": "valid-funding", "kind": "fixture", "path": "fixtures/valid/funding.json", "expect": "valid" },
+    { "id": "valid-document-reference", "kind": "fixture", "path": "fixtures/valid/document-reference.json", "expect": "valid" },
+    { "id": "invalid-unsupported-event-type", "kind": "fixture", "path": "fixtures/invalid/unsupported-event-type.json", "expect": "invalid", "expected_error": "unsupported_event_type" },
+    { "id": "invalid-malformed-decimal", "kind": "fixture", "path": "fixtures/invalid/malformed-decimal-quantity.json", "expect": "invalid", "expected_error": "malformed_decimal" },
+    { "id": "invalid-missing-source-metadata", "kind": "fixture", "path": "fixtures/invalid/missing-source-metadata.json", "expect": "invalid", "expected_error": "missing_source_record_id" },
+    { "id": "invalid-missing-event-id", "kind": "fixture", "path": "fixtures/invalid/missing-event-id.json", "expect": "invalid", "expected_error": "missing_event_id" },
+    { "id": "missing-data-position-fill-link", "kind": "fixture", "path": "fixtures/missing-data/position-without-fill-reference.json", "expect": "valid" },
+    { "id": "missing-data-balance-evidence", "kind": "fixture", "path": "fixtures/missing-data/balance-without-evidence.json", "expect": "valid" },
+    { "id": "missing-data-unknown-transfer", "kind": "fixture", "path": "fixtures/missing-data/transfer-unknown-classification.json", "expect": "valid" },
+    { "id": "lifecycle-linkage", "kind": "lifecycle", "path": "fixtures/lifecycle", "expect": "valid" },
+    { "id": "generator-determinism", "kind": "generator", "seed": 71, "expect": "identical" }
+  ]
+}

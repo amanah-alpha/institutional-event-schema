@@ -1,0 +1,22 @@
+{
+  "event_id": "evt-7058ccf7dbd5fa64",
+  "event_type": "FUNDING",
+  "evidence_refs": [
+    "evidence:synthetic:4bb512eb046d0c2e"
+  ],
+  "occurred_at": "2025-01-15T11:00:00Z",
+  "payload": {
+    "amount": "-77.35",
+    "asset": "SYNTH-USD",
+    "funding_id": "fund-eb7c0d99ac7ba18f",
+    "funding_type": "PERIODIC",
+    "related_position_ref": "evt-ed47badb31968b7d"
+  },
+  "source": {
+    "captured_at": "2025-01-15T11:05:00Z",
+    "content_digest": "sha256:c3f8b8f3c9f7bbe0f6825655f5d0c5ac3b84a0e85e5f179bd8f976fe25e1350f",
+    "source_record_id": "src-7058ccf7dbd5fa64",
+    "source_system": "SYNTHETIC_LIFECYCLE_SYSTEM",
+    "source_type": "INTERNAL_LEDGER"
+  }
+}
