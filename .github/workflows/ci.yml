@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install validation dependency
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Validate schemas and fixtures
+        run: python scripts/validate_fixtures.py
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Run 18-case public conformance suite
+        run: python scripts/validate_fixtures.py
+
+      - name: Verify deterministic synthetic fixture generation
+        shell: bash
+        run: |
+          seed_71_a="${RUNNER_TEMP}/institutional-event-schema-seed-71-a"
+          seed_71_b="${RUNNER_TEMP}/institutional-event-schema-seed-71-b"
+          seed_72="${RUNNER_TEMP}/institutional-event-schema-seed-72"
+
+          python generators/generate_synthetic_fixtures.py --seed 71 --output "${seed_71_a}"
+          python generators/generate_synthetic_fixtures.py --seed 71 --output "${seed_71_b}"
+          diff --recursive --brief "${seed_71_a}" "${seed_71_b}"
+
+          python generators/generate_synthetic_fixtures.py --seed 72 --output "${seed_72}"
+          python - "${seed_71_a}" "${seed_72}" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          def records(root: Path) -> dict[str, object]:
+              return {
+                  path.relative_to(root).as_posix(): json.loads(path.read_text(encoding="utf-8"))
+                  for path in sorted(root.rglob("*.json"))
+              }
+
+          seed_71 = records(Path(sys.argv[1]))
+          seed_72 = records(Path(sys.argv[2]))
+          if seed_71.keys() != seed_72.keys():
+              raise SystemExit("different seeds produced different filenames")
+          if not any(seed_71[name] != seed_72[name] for name in seed_71):
+              raise SystemExit("different seeds produced no synthetic value changes")
+          print(f"stable filenames: {len(seed_71)}; controlled value differences confirmed")
+          PY
+
+      - name: Write job summary
+        shell: bash
+        run: |
+          cat >> "${GITHUB_STEP_SUMMARY}" <<'EOF'
+          ## institutional-event-schema
+
+          ✓ 10 Draft 2020-12 schemas
+          ✓ Event-family fixtures
+          ✓ Missing-data structural validity
+          ✓ Lifecycle linkage
+          ✓ 18 public conformance cases
+          ✓ Deterministic synthetic fixture generation
+          EOF

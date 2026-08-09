@@ -1,5 +1,7 @@
 # institutional-event-schema
 
+[![CI](https://github.com/amanah-alpha/institutional-event-schema/actions/workflows/ci.yml/badge.svg)](https://github.com/amanah-alpha/institutional-event-schema/actions/workflows/ci.yml)
+
 **Normalized assurance-input schemas and synthetic fixtures for institutional digital-asset lifecycle records.**
 
 Public interoperability specification · JSON Schema Draft 2020-12
