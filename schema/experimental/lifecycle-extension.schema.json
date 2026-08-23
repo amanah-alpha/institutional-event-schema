@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:institutional-event-schema:experimental:lifecycle:0.1.0-rd",
+  "title": "EXPERIMENTAL Event Lifecycle Extension (R&D — not the stable contract)",
+  "description": "NON-AUTHORITATIVE SYNTHETIC REFERENCE EXTENSION. Represents corrections, reversals and cancellations as explicit links between retained records. Correction is NEVER mutation: both original and superseding records remain.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "lifecycle_action",
+    "source_system",
+    "source_record_id",
+    "content_digest"
+  ],
+  "properties": {
+    "lifecycle_action": {
+      "enum": ["ORIGINAL", "CORRECTION", "REVERSAL", "CANCELLATION"]
+    },
+    "source_system": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "source_record_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "supersedes_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_system", "source_record_id"],
+      "properties": {
+        "source_system": {"type": "string", "minLength": 1, "maxLength": 128},
+        "source_record_id": {"type": "string", "minLength": 1, "maxLength": 256}
+      }
+    },
+    "correction_sequence": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Monotonic sequence of successive corrections to one original; informational."
+    },
+    "reason_ref": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Opaque reference to an externally held reason record; no content embedded."
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "lifecycle_action": { "const": "ORIGINAL" } } },
+      "then": { "properties": { "supersedes_source": false } }
+    },
+    {
+      "if": { "not": { "properties": { "lifecycle_action": { "const": "ORIGINAL" } } } },
+      "then": { "required": ["supersedes_source"] }
+    }
+  ]
+}
