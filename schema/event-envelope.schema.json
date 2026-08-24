@@ -40,6 +40,22 @@
       "format": "date-time",
       "description": "Timestamp attributed to the lifecycle event by its source context."
     },
+    "available_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp from which this record is legitimately available to assurance consumers. Distinct from occurred_at: late evidence arrives after the event it describes. Consumers enforcing point-in-time semantics MUST use this field and MUST NOT substitute occurred_at."
+    },
+    "mapping_version_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$",
+      "description": "Opaque reference to the mapping specification version used to normalise the source record into this event. A mapping-version reference is NOT a source identity."
+    },
+    "lifecycle": {
+      "$ref": "lifecycle.schema.json",
+      "description": "Optional lifecycle metadata relating this record to the record it supersedes. Corrections/reversals/cancellations are append-only links: they never mutate or erase the original observation."
+    },
     "source": {
       "$ref": "#/$defs/source"
     },

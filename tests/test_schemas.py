@@ -28,7 +28,7 @@ class SchemaTests(unittest.TestCase):
 
     def test_every_schema_is_draft_2020_12(self) -> None:
         schema_paths = sorted((ROOT / "schema").glob("*.schema.json"))
-        self.assertEqual(10, len(schema_paths))
+        self.assertEqual(11, len(schema_paths))
         for path in schema_paths:
             with self.subTest(path=path.name):
                 schema = load_json(path)
