@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:institutional-event-schema:experimental:asset-class:0.1.0-rd",
+  "title": "EXPERIMENTAL Asset-Class Metadata Extension (R&D — not the stable contract)",
+  "description": "NON-AUTHORITATIVE SYNTHETIC REFERENCE EXTENSION. Declares the closed asset-class vocabulary used by pack applicability scoping (QFC alignment): permitted-token RWA, tokenized fund units and sukuk certificates are in scope for permitted regimes; cryptocurrencies, stablecoins and CBDCs mirror the QFC 'Excluded Token' concept. Naming is positioning metadata, not a legal determination. See docs/ASSET_CLASS_SCOPE.md in the amanah-alpha repository.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["asset_class"],
+  "properties": {
+    "asset_class": {
+      "enum": [
+        "PERMITTED_TOKEN_RWA",
+        "TOKENIZED_FUND_UNIT",
+        "SUKUK_CERTIFICATE",
+        "CONVENTIONAL_SECURITY",
+        "EXCLUDED_TOKEN_CRYPTO",
+        "EXCLUDED_TOKEN_STABLECOIN",
+        "EXCLUDED_TOKEN_CBDC",
+        "UNCLASSIFIED"
+      ]
+    },
+    "source_system": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}
