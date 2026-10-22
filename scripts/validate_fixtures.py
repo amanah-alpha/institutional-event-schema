@@ -9,9 +9,7 @@ import tempfile
 from pathlib import Path
 from typing import Any, Iterable
 
-from jsonschema import Draft202012Validator, FormatChecker
 from jsonschema.exceptions import ValidationError
-from referencing import Registry, Resource
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,23 +20,8 @@ if str(ROOT) not in sys.path:
 from generators.generate_synthetic_fixtures import write_corpus  # noqa: E402
 
 
-def load_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def build_validator() -> Draft202012Validator:
-    schemas = [load_json(path) for path in sorted(SCHEMA_DIR.glob("*.schema.json"))]
-    for schema in schemas:
-        Draft202012Validator.check_schema(schema)
-    registry = Registry().with_resources(
-        (schema["$id"], Resource.from_contents(schema)) for schema in schemas
-    )
-    envelope = load_json(SCHEMA_DIR / "event-envelope.schema.json")
-    return Draft202012Validator(
-        envelope,
-        registry=registry,
-        format_checker=FormatChecker(),
-    )
+from institutional_event_schema._json import load_document as load_json  # noqa: E402
+from institutional_event_schema.validation import build_validator  # noqa: E402
 
 
 def flattened_errors(errors: Iterable[ValidationError]) -> list[ValidationError]:

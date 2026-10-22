@@ -98,3 +98,10 @@ The schemas and fixtures carry no credentials or production data. See [`SECURITY
 ## License
 
 Licensed under the Apache License 2.0. See [`LICENSE`](LICENSE).
+
+## Independent consumer tools
+
+Install this repository with `python -m pip install .` to use the `institutional-event-schema`
+command and the `institutional_event_schema` Python API without the Amanah Alpha evaluator.
+See [the consumer guide](docs/CONSUMER_GUIDE.md) for strict file validation,
+JSON diagnostics, digest limitations and clean-wheel verification.

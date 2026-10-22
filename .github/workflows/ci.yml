@@ -71,13 +71,22 @@ jobs:
           print(f"stable filenames: {len(seed_71)}; controlled value differences confirmed")
           PY
 
+
+      - name: Verify wheel in an isolated consumer environment
+        run: |
+          python -m pip wheel --no-deps --wheel-dir "${RUNNER_TEMP}/schema-wheels" .
+          python -m venv "${RUNNER_TEMP}/schema-consumer"
+          "${RUNNER_TEMP}/schema-consumer/bin/python" -m pip install "${RUNNER_TEMP}/schema-wheels/"*.whl
+          cd "${RUNNER_TEMP}"
+          "${RUNNER_TEMP}/schema-consumer/bin/python" "${GITHUB_WORKSPACE}/scripts/verify_installed_package.py"
+
       - name: Write job summary
         shell: bash
         run: |
           cat >> "${GITHUB_STEP_SUMMARY}" <<'EOF'
           ## institutional-event-schema
 
-          ✓ 10 Draft 2020-12 schemas
+          ✓ Canonical Draft 2020-12 schemas
           ✓ Event-family fixtures
           ✓ Missing-data structural validity
           ✓ Lifecycle linkage

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "institutional-event-schema"
+version = "0.1.0"
+description = "Independent local validation tools for the institutional-event-schema interoperability specification"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+dependencies = ["jsonschema>=4.23,<5", "rfc3339-validator>=0.1.4,<0.2"]
+
+[project.urls]
+Repository = "https://github.com/amanah-alpha/institutional-event-schema"
+Issues = "https://github.com/amanah-alpha/institutional-event-schema/issues"
+
+[project.scripts]
+institutional-event-schema = "institutional_event_schema.cli:main"
+
+[tool.setuptools]
+packages = ["institutional_event_schema", "institutional_event_schema.schemas"]
+package-dir = {"institutional_event_schema.schemas" = "schema"}
+
+[tool.setuptools.package-data]
+"institutional_event_schema.schemas" = ["*.json"]
